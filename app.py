@@ -12,5 +12,5 @@ click1 = st.button("1")
 click2 = st.button("2")
 click3 = st.button("3")
 
-if if click1:
+if click1:
   proof 2 = st.text_input("
