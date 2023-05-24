@@ -11,3 +11,6 @@ st.subheader("Proof Question")
 click1 = st.button("1")
 click2 = st.button("2")
 click3 = st.button("3")
+
+if click1:
+  st.write("hi")
