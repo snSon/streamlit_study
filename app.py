@@ -12,5 +12,4 @@ click1 = st.button(st.markdown("[$\sqrt{x}$]"))
 click2 = st.button("2")
 click3 = st.button("3")
 
-if click1:
-  st.write(st.markdown("[$\sqrt{st.text_input()}$]"))
+
