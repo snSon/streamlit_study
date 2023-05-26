@@ -11,18 +11,14 @@ def main():
     if "input_text" not in st.session_state:
         st.session_state["input_text"] = ""
 
+    # Symbol buttons
     st.write("Click a symbol to add:")
     symbols = ["!", "@", "#", "$", "%"]
-    button_row = st.empty()
-    for symbol in symbols:
+    button_col = st.beta_columns(5)  # 5개의 버튼을 가로로 출력하기 위한 열 생성
+    for i, symbol in enumerate(symbols):
         button_text = f"Add {symbol}"
-        button_row.button(button_text, key=symbol)  # 가로 형태로 버튼 출력
-
-
-    # Input field
-    input_text = st.session_state["input_text"]
-    input_text = st.text_input("Input", input_text, key="input_text")
-    st.write("Input text:", input_text)
+        if button_col[i % 5].button(button_text):
+            add_symbol(symbol)
 
     # 문제 입력
     st.header("문제 입력")
