@@ -17,6 +17,6 @@ click2 = st.button("2")
 click3 = st.button("3")
 
 if click1:
-   question += "1"
+   question += st.text_input("1")
   
 st.wirte(question)
