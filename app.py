@@ -2,47 +2,21 @@ import streamlit as st
 
 st.title("Proof Math")
 
-st.header("What is Question?")
-question = st.text_input("write here")
+with st.container():
+   st.header("What is Question?")
+   question = st.text_input("write here")
 
-st.subheader("Proof Question")
-proof = st.text_input("proof")
+st.write(question)
 
-import pandas as pd
-import numpy as np
-import pydeck as pdk
+with st.container():
+   st.subheader("Proof Question")
+   proof = st.text_input("proof")
 
-chart_data = pd.DataFrame(
-   np.random.randn(1000, 2) / [50, 50] + [37.76, -122.4],
-   columns=['lat', 'lon'])
+click1 = st.button("1")
+click2 = st.button("2")
+click3 = st.button("3")
 
-st.pydeck_chart(pdk.Deck(
-    map_style=None,
-    initial_view_state=pdk.ViewState(
-        latitude=37.76,
-        longitude=-122.4,
-        zoom=11,
-        pitch=50,
-    ),
-    layers=[
-        pdk.Layer(
-           'HexagonLayer',
-           data=chart_data,
-           get_position='[lon, lat]',
-           radius=200,
-           elevation_scale=4,
-           elevation_range=[0, 1000],
-           pickable=True,
-           extruded=True,
-        ),
-        pdk.Layer(
-            'ScatterplotLayer',
-            data=chart_data,
-            get_position='[lon, lat]',
-            get_color='[200, 30, 0, 160]',
-            get_radius=200,
-        ),
-    ],
-))
-
-
+if click1:
+   question += "1"
+  
+st.wirte(question)
