@@ -11,14 +11,13 @@ def main():
     if "input_text" not in st.session_state:
         st.session_state["input_text"] = ""
 
-    # Symbol buttons
     st.write("Click a symbol to add:")
     symbols = ["!", "@", "#", "$", "%"]
     button_row = st.empty()
     for symbol in symbols:
         button_text = f"Add {symbol}"
-        if button_row.button(button_text):
-            add_symbol(symbol)
+        button_row.button(button_text, key=symbol)  # 가로 형태로 버튼 출력
+
 
     # Input field
     input_text = st.session_state["input_text"]
