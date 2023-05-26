@@ -21,6 +21,6 @@ click3 = st.button("3")
 if click1:
    sub =  st.text_input("calc")
 
-proof = proof + sub
+final_proof = proof + sub
 
-st.write(proof)
+st.write(final_proof)
