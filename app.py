@@ -14,9 +14,10 @@ def main():
     # Symbol buttons
     st.write("Click a symbol to add:")
     symbols = ["!", "@", "#", "$", "%"]
+    button_row = st.empty()
     for symbol in symbols:
         button_text = f"Add {symbol}"
-        if st.button(button_text):
+        if button_row.button(button_text):
             add_symbol(symbol)
 
     # Input field
