@@ -12,11 +12,15 @@ with st.container():
    st.subheader("Proof Question")
    proof = st.text_input("proof")
 
+st.write(proof)
+
 click1 = st.button("1")
 click2 = st.button("2")
 click3 = st.button("3")
 
 if click1:
-   question += st.text_input("1")
-  
-st.wirte(question)
+   sub =  st.text_input("calc")
+
+proof = proof + sub
+
+st.write(proof)
