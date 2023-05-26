@@ -1,5 +1,9 @@
 import streamlit as st
 
+@st.cache_data
+def sum(x,y):
+   return x+y
+
 st.title("Proof Math")
 
 with st.container():
@@ -21,6 +25,6 @@ click3 = st.button("3")
 if click1:
    sub =  st.text_input("calc")
 
-final_proof = proof + sub
+final_proof = st.cache_data(proof, sub)
 
 st.write(final_proof)
