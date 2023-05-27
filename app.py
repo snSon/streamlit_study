@@ -39,36 +39,37 @@ def main():
 
     # 문제 입력
     st.header("문제 입력")
-    question_button_pressed = st.button("문제 입력", key="question_button")
+    question_button_pressed = st.button("문제 입력", key="question_button", help="문제 입력 버튼")
     st.session_state["question_button_pressed"] = question_button_pressed
 
     if question_button_pressed:
         solution_button_pressed = False
-        st.session_state["solution_button_pressed"] = solution_button_pressed
 
-    question = st.text_area("문제를 입력하세요", height=100, key="input_text_question")
+    solution_button_pressed = st.session_state.get("solution_button_pressed", False)
+
+    if question_button_pressed or solution_button_pressed:  # 문제 입력 또는 문제풀이 입력 버튼이 눌려있는 경우
+        question = st.text_area("문제를 입력하세요", height=100, key="input_text_question")
+    else:
+        question = st.text_area("문제를 입력하세요", height=100, key="input_text_question", value=st.session_state["input_text_question"])
 
     # 문제풀이 입력
     st.header("문제풀이 입력")
-    solution_button_pressed = st.button("문제풀이 입력", key="solution_button")
+    solution_button_pressed = st.button("문제풀이 입력", key="solution_button", help="문제풀이 입력 버튼")
     st.session_state["solution_button_pressed"] = solution_button_pressed
 
     if solution_button_pressed:
         question_button_pressed = False
-        st.session_state["question_button_pressed"] = question_button_pressed
+    question_button_pressed = st.session_state.get("question_button_pressed", False)
 
-    solution = st.text_area("문제풀이를 입력하세요", height=300, key="input_text_solution")
+    if question_button_pressed or solution_button_pressed:  # 문제 입력 또는 문제풀이 입력 버튼이 눌려있는 경우
+        solution = st.text_area("문제풀이를 입력하세요", height=300, key="input_text_solution")
+    else:
+        solution = st.text_area("문제풀이를 입력하세요", height=300, key="input_text_solution", value=st.session_state["input_text_solution"])
 
-    # 백엔드에서 받아온 정답유무와 맞는 풀이 출력
-    if st.button("Check Answer"):
-        is_correct, correct_solution = check_answer(solution)  # Assuming `check_answer` is a function that returns (is_correct, correct_solution)
-        if is_correct:
-            st.success("Correct!")
-        else:
-            show_solution = st.checkbox("Show Solution")
-            st.error("Incorrect!")
-            if show_solution:
-                st.info(f"Correct Solution: {correct_solution}")
+    # 입력받은 문제와 문제풀이 출력
+    st.header("입력받은 문제와 문제풀이")
+    st.write("문제:", question)
+    st.write("문제풀이:", solution)
 
 if __name__ == "__main__":
     main()
