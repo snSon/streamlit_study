@@ -1,12 +1,19 @@
 import streamlit as st
 
+def check_answer(solution):
+    # 정답 확인 로직 구현
+    # 예시로 정답을 True로 가정하고 반환
+    is_correct = True
+    correct_solution = "정답"
+    return is_correct, correct_solution
+
 def add_symbol(symbol, input_key):
     input_text = st.session_state[input_key]
     input_text += symbol
     st.session_state[input_key] = input_text
 
 def main():
-    st.title("Symbol Addition")
+    st.title("고등학교 수학 풀이 검증")
 
     if "input_text_question" not in st.session_state:
         st.session_state["input_text_question"] = ""
@@ -14,8 +21,7 @@ def main():
 
     # Symbol buttons
     st.write("Click a symbol to add:")
-    symbols = ["+", "-", "*", "/", "^", "()", "√", "sin", "cos", "tan", "log", "ln", "∫", "dx", "d/dx", "df/dx"]
-
+    symbols = ["+", "-", "*", "/", "^", "√", "sin", "cos", "tan", "log", "ln", "∫", "dx", "d/dx", "df/dx"]
     button_cols = st.beta_columns(4)  # 4개의 열 생성
 
     # 문제 입력 버튼 체크 여부 확인
@@ -59,6 +65,7 @@ def main():
 
     if solution_button_pressed:
         question_button_pressed = False
+
     question_button_pressed = st.session_state.get("question_button_pressed", False)
 
     if question_button_pressed or solution_button_pressed:  # 문제 입력 또는 문제풀이 입력 버튼이 눌려있는 경우
@@ -66,10 +73,16 @@ def main():
     else:
         solution = st.text_area("문제풀이를 입력하세요", height=300, key="input_text_solution", value=st.session_state["input_text_solution"])
 
-    # 입력받은 문제와 문제풀이 출력
-    st.header("입력받은 문제와 문제풀이")
-    st.write("문제:", question)
-    st.write("문제풀이:", solution)
+    # 정답 확인
+    if st.button("Check Answer"):
+        is_correct, correct_solution = check_answer(solution)
+        if is_correct:
+            st.success("Correct!")
+        else:
+            show_solution = st.checkbox("Show Solution")
+            st.error("Incorrect!")
+            if show_solution:
+                st.info(f"Correct Solution: {correct_solution}")
 
 if __name__ == "__main__":
     main()
