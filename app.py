@@ -15,16 +15,13 @@ def main():
     st.write("Click a symbol to add:")
     symbols = ["+", "-", "*", "/", "^", "()", "√", "sin", "cos", "tan", "log", "ln"]
 
-    button_col1, button_col2 = st.beta_columns(2)  # 2개의 열 생성
+    button_cols = st.beta_columns(4)  # 4개의 열 생성
 
     for i, symbol in enumerate(symbols):
         button_text = f"Add {symbol}"
-        if i < 6:  # 첫 번째 열에 6개 버튼 추가
-            if button_col1.button(button_text):
-                add_symbol(symbol)
-        else:  # 두 번째 열에 6개 버튼 추가
-            if button_col2.button(button_text):
-                add_symbol(symbol)
+        button_col = button_cols[i // 3]  # 열 선택: 3개 버튼마다 열 변경
+        if button_col.button(button_text):
+            add_symbol(symbol)
 
     # 문제 입력
     st.header("문제 입력")
