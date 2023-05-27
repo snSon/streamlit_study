@@ -7,15 +7,16 @@ def check_answer(solution):
     correct_solution = "정답"
     return is_correct, correct_solution
 
-def add_symbol_question(symbol):
+def add_symbol(symbol):
     input_text_question = st.session_state.get("input_text_question", "")
-    input_text_question += symbol
-    st.session_state["input_text_question"] = input_text_question
-
-def add_symbol_solution(symbol):
     input_text_solution = st.session_state.get("input_text_solution", "")
-    input_text_solution += symbol
-    st.session_state["input_text_solution"] = input_text_solution
+    
+    if st.session_state.get("is_question_input", False):
+        input_text_question += symbol
+        st.session_state["input_text_question"] = input_text_question
+    elif st.session_state.get("is_solution_input", False):
+        input_text_solution += symbol
+        st.session_state["input_text_solution"] = input_text_solution
 
 def main():
     st.title("고등학교 수학 풀이 검증")
@@ -23,30 +24,28 @@ def main():
     if "input_text_question" not in st.session_state:
         st.session_state["input_text_question"] = ""
         st.session_state["input_text_solution"] = ""
+        st.session_state["is_question_input"] = False
+        st.session_state["is_solution_input"] = False
 
-    # Symbol buttons for question
-    st.write("Click a symbol to add to question:")
-    symbols_question = ["+", "-", "*", "/", "^", "√"]
-    for symbol in symbols_question:
+    # Symbol buttons
+    st.write("Click a symbol to add:")
+    symbols = ["+", "-", "*", "/", "^", "√", "sin", "cos", "tan", "log", "ln", "∫", "dx", "d/dx", "df/dx"]
+    for symbol in symbols:
         button_text = f"Add {symbol}"
         if st.button(button_text, key=symbol):
-            add_symbol_question(symbol)
+            add_symbol(symbol)
 
     # 문제 입력
     st.header("문제 입력")
+    st.session_state["is_question_input"] = True
     question = st.text_area("문제를 입력하세요", height=100, value=st.session_state["input_text_question"])
-
-    # Symbol buttons for solution
-    st.write("Click a symbol to add to solution:")
-    symbols_solution = ["sin", "cos", "tan", "log", "ln", "∫", "dx", "d/dx", "df/dx"]
-    for symbol in symbols_solution:
-        button_text = f"Add {symbol}"
-        if st.button(button_text, key=symbol):
-            add_symbol_solution(symbol)
+    st.session_state["is_question_input"] = False
 
     # 문제풀이 입력
     st.header("문제풀이 입력")
+    st.session_state["is_solution_input"] = True
     solution = st.text_area("문제풀이를 입력하세요", height=300, value=st.session_state["input_text_solution"])
+    st.session_state["is_solution_input"] = False
 
     # 정답 확인
     if st.button("Check Answer"):
