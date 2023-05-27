@@ -28,10 +28,14 @@ def main():
     st.header("문제풀이 입력")
     solution = st.text_area("문제풀이를 입력하세요")
 
-    # 입력받은 문제와 문제풀이 출력
-    st.header("입력받은 문제와 문제풀이")
-    st.write("문제:", question)
-    st.write("문제풀이:", solution)
+    # 백엔드에서 받아온 정답유무와 맞는 풀이 출력
+    if st.button("Check Answer"):
+        is_correct, correct_solution = check_answer(solution)  # Assuming `check_answer` is a function that returns (is_correct, correct_solution)
+        if is_correct:
+            st.success("Correct!")
+        else:
+            st.error("Incorrect!")
+            st.info(f"Correct Solution: {correct_solution}")
 
 if __name__ == "__main__":
     main()
