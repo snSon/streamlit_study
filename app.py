@@ -22,11 +22,11 @@ def main():
 
     # 문제 입력
     st.header("문제 입력")
-    question = st.text_area("문제를 입력하세요")
+    question = st.text_area("문제를 입력하세요", height=100)
 
     # 문제풀이 입력
     st.header("문제풀이 입력")
-    solution = st.text_area("문제풀이를 입력하세요")
+    solution = st.text_area("문제풀이를 입력하세요", height=300)
 
     # 백엔드에서 받아온 정답유무와 맞는 풀이 출력
     if st.button("Check Answer"):
