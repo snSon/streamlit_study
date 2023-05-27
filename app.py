@@ -28,18 +28,18 @@ def main():
 
         with button_col:
             if question_button_pressed:  # 문제 입력 버튼이 눌려있는 경우
-                if st.button(button_text, key=symbol):  # 각 버튼에 고유한 키(key) 설정
+                if st.button(button_text, key=symbol, help=button_text):  # 각 버튼에 고유한 키(key) 설정
                     add_symbol(symbol, "input_text_question")
             elif solution_button_pressed:  # 문제풀이 입력 버튼이 눌려있는 경우
-                if st.button(button_text, key=symbol):  # 각 버튼에 고유한 키(key) 설정
+                if st.button(button_text, key=symbol, help=button_text):  # 각 버튼에 고유한 키(key) 설정
                     add_symbol(symbol, "input_text_solution")
             else:  # 버튼이 눌려있지 않은 경우, 기본적으로 문제 입력 버튼을 활성화
-                if st.button(button_text, key=symbol):  # 각 버튼에 고유한 키(key) 설정
+                if st.button(button_text, key=symbol, help=button_text):  # 각 버튼에 고유한 키(key) 설정
                     add_symbol(symbol, "input_text_question")
 
     # 문제 입력
     st.header("문제 입력")
-    question_button_pressed = st.button("문제 입력")
+    question_button_pressed = st.button("문제 입력", key="question_button")
     st.session_state["question_button_pressed"] = question_button_pressed
 
     if question_button_pressed:
@@ -50,7 +50,7 @@ def main():
 
     # 문제풀이 입력
     st.header("문제풀이 입력")
-    solution_button_pressed = st.button("문제풀이 입력")
+    solution_button_pressed = st.button("문제풀이 입력", key="solution_button")
     st.session_state["solution_button_pressed"] = solution_button_pressed
 
     if solution_button_pressed:
