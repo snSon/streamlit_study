@@ -20,8 +20,9 @@ def main():
     for i, symbol in enumerate(symbols):
         button_text = f"Add {symbol}"
         button_col = button_cols[i // 4]  # 열 선택: 4개 버튼마다 열 변경
-        if button_col.button(button_text):
+        if button_col.button(button_text, key=symbol):  # 각 버튼에 고유한 키(key) 설정
             add_symbol(symbol)
+            st.text_area("문제풀이를 입력하세요", value=st.session_state["input_text"], height=300, key="solution")  # 문제풀이 입력란에 기호 추가
 
     # 문제 입력
     st.header("문제 입력")
@@ -29,7 +30,7 @@ def main():
 
     # 문제풀이 입력
     st.header("문제풀이 입력")
-    solution = st.text_area("문제풀이를 입력하세요", height=300)
+    solution = st.text_area("문제풀이를 입력하세요", height=300, key="solution")
 
     # 백엔드에서 받아온 정답유무와 맞는 풀이 출력
     if st.button("Check Answer"):
