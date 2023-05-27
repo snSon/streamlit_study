@@ -34,8 +34,10 @@ def main():
         if is_correct:
             st.success("Correct!")
         else:
+            show_solution = st.checkbox("Show Solution")
             st.error("Incorrect!")
-            st.info(f"Correct Solution: {correct_solution}")
+            if show_solution:
+                st.info(f"Correct Solution: {correct_solution}")
 
 if __name__ == "__main__":
     main()
