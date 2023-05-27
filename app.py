@@ -13,11 +13,11 @@ def main():
 
     # Symbol buttons
     st.write("Click a symbol to add:")
-    symbols = ["!", "@", "#", "$", "%"]
-    button_col = st.beta_columns(5)  # 5개의 버튼을 가로로 출력하기 위한 열 생성
+    symbols = ["+", "-", "*", "/", "^", "()", "√", "sin", "cos", "tan", "log", "ln"]
+    button_col = st.beta_columns(len(symbols))  # 기호 버튼을 가로로 출력하기 위한 열 생성
     for i, symbol in enumerate(symbols):
         button_text = f"Add {symbol}"
-        if button_col[i % 5].button(button_text):
+        if button_col[i].button(button_text):
             add_symbol(symbol)
 
     # 문제 입력
