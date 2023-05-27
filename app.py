@@ -34,8 +34,8 @@ def main():
         if is_correct:
             st.success("정답입니다!")
         else:
-            show_solution = st.checkbox("풀이를 확인하시겠습니까?")
             st.error("틀렸습니다. 다시 확인해보세요.")
+            show_solution = st.checkbox("풀이를 확인하시겠습니까?")
             if show_solution:
                 st.info("올바른 풀이: 정답")
 
