@@ -13,13 +13,13 @@ def main():
 
     # Symbol buttons
     st.write("Click a symbol to add:")
-    symbols = ["+", "-", "*", "/", "^", "()", "√", "sin", "cos", "tan", "log", "ln"]
+    symbols = ["+", "-", "*", "/", "^", "()", "√", "sin", "cos", "tan", "log", "ln", "∫", "dx", "d/dx", "df/dx"]
 
     button_cols = st.beta_columns(4)  # 4개의 열 생성
 
     for i, symbol in enumerate(symbols):
         button_text = f"Add {symbol}"
-        button_col = button_cols[i // 3]  # 열 선택: 3개 버튼마다 열 변경
+        button_col = button_cols[i // 4]  # 열 선택: 4개 버튼마다 열 변경
         if button_col.button(button_text):
             add_symbol(symbol)
 
