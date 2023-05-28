@@ -3,7 +3,7 @@ import requests
 import json
 
 GPT_API_ENDPOINT = "https://api.openai.com/v1/engines/davinci-codex/completions"
-API_KEY = "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"
+API_KEY = "STCMwQuDsDtDLzK7Mz7kT3BlbkFJjMbmNtQHUfZSlB4Ci7WJ"
 
 # GPT API로부터 답변을 받는 함수
 def get_gpt_answer(question, solution):
