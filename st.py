@@ -1,5 +1,6 @@
 import streamlit as st
 import requests
+from bs4 import BeautifulSoup
 
 def get_weather(location):
     # 기상청 API 호출
@@ -13,6 +14,16 @@ def get_weather(location):
         return weather_data
     else:
         st.error("날씨 정보를 가져오는데 실패했습니다.")
+
+def extract_temperature(weather_data):
+    # 날씨 정보에서 온도를 추출하는 로직을 구현
+    soup = BeautifulSoup(weather_data, 'html.parser')
+    temperature_element = soup.find('td', class_='temperature')
+    if temperature_element:
+        temperature = temperature_element.get_text(strip=True)
+        return int(temperature)
+    else:
+        return None
 
 def recommend_clothing(weather_data):
     # 날씨 정보에 따라 온도를 추출
@@ -30,15 +41,6 @@ def recommend_clothing(weather_data):
         st.write("옷 추천: 편한 반팔과 반바지를 입으세요.")
     else:
         st.write("옷 추천: 얇은 옷을 입으세요.")
-
-def extract_temperature(weather_data):
-    # 날씨 정보에서 온도를 추출하는 로직을 구현
-    # 예시로 간단히 온도 정보를 파싱하여 반환
-    temperature = None
-    # 날씨 정보에서 온도를 추출하는 로직 작성
-    # temperature = ...
-
-    return temperature
 
 def recommend_items(weather_data):
     # 날씨 정보에 따라 필요한 물건을 추천하는 로직을 구현
