@@ -36,7 +36,6 @@ submit_button = st.button("추천")
 if submit_button:
     weather_data = get_weather(location)
     if weather_data:
-        recommend_clothing(weather_data)
         recommend_items(weather_data)
     else:
         st.error("날씨 정보를 가져오는데 실패했습니다.")
