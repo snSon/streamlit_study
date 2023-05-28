@@ -21,7 +21,7 @@ def extract_temperature(weather_data):
     if temperature_element:
         temperature_text = temperature_element.get_text(strip=True)
         temperature = temperature_text.split(' ')[0]  # 기온 숫자 부분만 추출
-        return temperature
+        return int(temperature)  # 정수형으로 변환
     else:
         return None
 
