@@ -16,12 +16,12 @@ def get_weather(location):
         st.error("날씨 정보를 가져오는데 실패했습니다.")
 
 def extract_temperature(weather_data):
-    # 날씨 정보에서 온도를 추출하는 로직을 구현
     soup = BeautifulSoup(weather_data, 'html.parser')
-    temperature_element = soup.find('td', class_='headers-temp')
+    temperature_element = soup.find('th', attrs={'headers': 'headers-temp'})
     if temperature_element:
-        temperature = temperature_element.get_text(strip=True)
-        return int(temperature)
+        temperature_text = temperature_element.get_text(strip=True)
+        temperature = temperature_text.split(' ')[0]  # 기온 숫자 부분만 추출
+        return temperature
     else:
         return None
 
