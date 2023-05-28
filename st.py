@@ -1,5 +1,6 @@
 import streamlit as st
 import requests
+from PIL import Image
 
 def get_weather(location):
     # 기상청 API 호출
@@ -18,11 +19,17 @@ def recommend_clothing(weather_data):
     # 날씨 정보에 따라 옷을 추천하는 로직을 구현
     # 예시로 간단히 추천 메시지 출력
     st.write("옷 추천: 편한 반팔과 반바지를 입으세요.")
+    # 추천에 맞는 이미지 보여주기
+    image = Image.open("summer_clothing.jpg")
+    st.image(image, caption="옷 추천 이미지")
 
 def recommend_items(weather_data):
     # 날씨 정보에 따라 필요한 물건을 추천하는 로직을 구현
     # 예시로 간단히 추천 메시지 출력
     st.write("챙길 물건 추천: 모자와 선크림을 챙기세요.")
+    # 추천에 맞는 이미지 보여주기
+    image = Image.open("sunscreen_hat.jpg")
+    st.image(image, caption="물건 추천 이미지")
 
 # Streamlit 앱 설정
 st.title("날씨 옷과 물건 추천")
