@@ -18,7 +18,7 @@ def get_weather(location):
 def extract_temperature(weather_data):
     # 날씨 정보에서 온도를 추출하는 로직을 구현
     soup = BeautifulSoup(weather_data, 'html.parser')
-    temperature_element = soup.find('td', class_='temperature')
+    temperature_element = soup.find('td', class_='headers-temp')
     if temperature_element:
         temperature = temperature_element.get_text(strip=True)
         return int(temperature)
