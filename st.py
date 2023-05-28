@@ -14,16 +14,6 @@ def get_weather(location):
     else:
         st.error("날씨 정보를 가져오는데 실패했습니다.")
 
-def recommend_clothing(weather_data):
-    # 날씨 정보에 따라 옷을 추천하는 로직을 구현
-    # 예시로 간단히 추천 메시지 출력
-    if "비" in weather_data:
-        st.write("옷 추천: 우비와 장화를 입으세요.")
-    elif "눈" in weather_data:
-        st.write("옷 추천: 패딩과 겨울 장갑을 입으세요.")
-    else:
-        st.write("옷 추천: 편한 반팔과 반바지를 입으세요.")
-
 def recommend_items(weather_data):
     # 날씨 정보에 따라 필요한 물건을 추천하는 로직을 구현
     # 예시로 간단히 추천 메시지 출력
@@ -31,8 +21,11 @@ def recommend_items(weather_data):
         st.write("챙길 물건 추천: 우산을 가져가세요.")
     elif "눈" in weather_data:
         st.write("챙길 물건 추천: 눈덩이 놀이를 즐길 수 있는 장갑을 챙기세요.")
+    elif "황사" in weather_data:
+        st.write("챙길 물건 추천: 마스크를 착용하세요.")
     else:
         st.write("챙길 물건 추천: 모자와 선크림을 챙기세요.")
+
 
 # Streamlit 앱 설정
 st.title("날씨 옷과 물건 추천")
