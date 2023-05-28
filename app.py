@@ -5,7 +5,7 @@ import base64
 
 GITHUB_API_ENDPOINT = "https://api.github.com/repos/{owner}/{repo}/contents/{path}"
 GPT_API_ENDPOINT = "https://api.openai.com/v1/engines/davinci-codex/completions"
-API_KEY = "YOUR_OPENAI_API_KEY"
+API_KEY = "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"
 
 # GitHub에서 데이터를 가져오는 함수
 def get_data_from_github(owner, repo, path):
