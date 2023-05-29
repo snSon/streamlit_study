@@ -1,9 +1,0 @@
-[server]
-enableCORS = false
-
-[theme]
-primaryColor = '#ffffff'
-backgroundColor = '#ebebeb'
-secondaryBackgroundColor = '#fafafa'
-textColor = '#333333'
-font = 'Malgun Gothic'  # 또는 다른 폰트 이름
