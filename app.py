@@ -74,8 +74,8 @@ try:
             plt.ylabel("수", fontproperties=font_prop)
             plt.title("쉼터", fontproperties=font_prop)
 
-            # x축 레이블 폰트 설정
-            ax.tick_params(axis='x', labelrotation=45, labelsize=12, labelcolor='black', width=1, pad=1,
+            # x축 레이블 폰트 설정 및 회전
+            ax.tick_params(axis='x', rotation=45, labelsize=12, labelcolor='black', width=1, pad=1,
                            labelfontproperties=font_prop)
 
             # y축 레이블 폰트 설정
@@ -96,8 +96,8 @@ try:
             plt.ylabel("수", fontproperties=font_prop)
             plt.title("쉼터", fontproperties=font_prop)
 
-            # x축 레이블 폰트 설정
-            ax.tick_params(axis='x', labelrotation=45, labelsize=12, labelcolor='black', width=1, pad=1,
+            # x축 레이블 폰트 설정 및 회전
+            ax.tick_params(axis='x', rotation=45, labelsize=12, labelcolor='black', width=1, pad=1,
                            labelfontproperties=font_prop)
 
             # y축 레이블 폰트 설정
@@ -109,6 +109,7 @@ try:
                         va='bottom', fontproperties=font_prop)
 
             st.pyplot(fig)
+
 
     else:
         st.error("API 요청 실패: " + str(response.status_code))
