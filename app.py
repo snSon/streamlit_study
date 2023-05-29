@@ -3,14 +3,10 @@ import json
 import pandas as pd
 import streamlit as st
 import matplotlib.pyplot as plt
-from matplotlib import font_manager, rc
+from matplotlib import rc
 
-# 폰트 파일 경로 설정 (Streamlit Cloud에서 사용할 경로)
-font_path = "/usr/share/fonts/truetype/nanum/NanumBarunGothic.ttf"
-
-# 폰트 등록
-font_manager.fontManager.addfont(font_path)
-rc('font', family='NanumBarunGothic')
+# 폰트 설정
+rc('font', family='Arial')
 
 encodingKey = "ZiLUX%2Bgd1UZWVK6xgqsuh3r7VVxBd33bdidKHPB9pJ2MuoEVMGjgAGms0G4g6PGmLFyVqGhUNP6wivLVImW9hA%3D%3D"
 url = "http://apis.data.go.kr/1741000/HeatWaveShelter2/getHeatWaveShelterList2?"
