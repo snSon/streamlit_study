@@ -3,9 +3,8 @@ import json
 import pandas as pd
 import streamlit as st
 import matplotlib
-matplotlib.use('agg')
 import matplotlib.pyplot as plt
-plt.rcParams['font.family'] = 'NanumGothic'
+plt.rcParams['font.family'] = 'Malgun Gothic'
 
 encodingKey = "ZiLUX%2Bgd1UZWVK6xgqsuh3r7VVxBd33bdidKHPB9pJ2MuoEVMGjgAGms0G4g6PGmLFyVqGhUNP6wivLVImW9hA%3D%3D"
 url = "http://apis.data.go.kr/1741000/HeatWaveShelter2/getHeatWaveShelterList2?"
