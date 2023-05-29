@@ -3,7 +3,10 @@ import json
 import pandas as pd
 import streamlit as st
 import matplotlib.pyplot as plt
-from matplotlib import rc
+import matplotlib.font_manager as fm
+
+font_path = 'NanumBarunGothicLight.ttf'
+font_prop = fm.FontProperties(fname=font_path, size = 16)
 
 # 폰트 설정
 rc('font', family='NanumBarunGothic')
@@ -68,18 +71,18 @@ try:
             # Display chart for shelter counts
             fig, ax = plt.subplots(figsize=(8, 6))
             plt.bar(shelter_counts.keys(), shelter_counts.values())
-            plt.xlabel("지역")
-            plt.ylabel("수")
-            plt.title("쉼터")
+            plt.xlabel("지역", fontproperties=font_prop)
+            plt.ylabel("수", fontproperties=font_prop)
+            plt.title("쉼터", prop = font_prop)
             st.pyplot(fig)
 
         if st.button("지역별 에어컨 있는 쉼터 갯수"):
             # Display chart for good shelters
             fig, ax = plt.subplots(figsize=(8, 6))
             plt.bar(shelter_good.keys(), shelter_good.values())
-            plt.xlabel("지역")
-            plt.ylabel("수")
-            plt.title("에어컨 쉼터")
+            plt.xlabel("지역", fontproperties=font_prop)
+            plt.ylabel("수", fontproperties=font_prop)
+            plt.title("에어컨 쉼터", prop = font_prop)
             st.pyplot(fig)
 
     else:
