@@ -2,10 +2,9 @@ import requests
 import json
 import pandas as pd
 import streamlit as st
+import matplotlib
+matplotlib.use('agg')
 import matplotlib.pyplot as plt
-import matplotlib.font_manager as fm
-
-fm.cache.clear()
 plt.rcParams['font.family'] = 'NanumGothic'
 
 encodingKey = "ZiLUX%2Bgd1UZWVK6xgqsuh3r7VVxBd33bdidKHPB9pJ2MuoEVMGjgAGms0G4g6PGmLFyVqGhUNP6wivLVImW9hA%3D%3D"
