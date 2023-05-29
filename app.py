@@ -75,8 +75,6 @@ try:
         # Streamlit app
         st.title("지역별 무더위 쉼터 차트")
 
-        plt.rcParams['font.family'] = 'Malgun Gothic'
-
         # Create buttons
         if st.button("지역별 무더위 쉼터 갯수"):
             # Display chart for shelter counts
