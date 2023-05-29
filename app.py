@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from matplotlib import rc
 
 # 폰트 설정
-rc('font', family='Arial')
+rc('font', family='NanumBarunGothic')
 
 encodingKey = "ZiLUX%2Bgd1UZWVK6xgqsuh3r7VVxBd33bdidKHPB9pJ2MuoEVMGjgAGms0G4g6PGmLFyVqGhUNP6wivLVImW9hA%3D%3D"
 url = "http://apis.data.go.kr/1741000/HeatWaveShelter2/getHeatWaveShelterList2?"
