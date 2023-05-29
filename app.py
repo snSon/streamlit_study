@@ -60,10 +60,6 @@ try:
         # Streamlit app
         st.title("지역별 무더위 쉼터 차트")
 
-        # Set font
-        font_path = 'NanumBarunGothicLight.ttf'
-        st.markdown(f'<style>body{{font-family: "NanumBarunGothicLight", sans-serif;}}</style>', unsafe_allow_html=True)
-
         # Create buttons
         if st.button("지역별 무더위 쉼터 갯수"):
             # Display chart for shelter counts
@@ -72,7 +68,9 @@ try:
             plt.xlabel("지역")
             plt.ylabel("수")
             plt.title("쉼터")
-
+            plt.xticks(fontname='NanumBarunGothicLight')
+            plt.yticks(fontname='NanumBarunGothicLight')
+            plt.show()
             st.pyplot(fig)
 
         if st.button("지역별 에어컨 있는 쉼터 갯수"):
@@ -82,7 +80,9 @@ try:
             plt.xlabel("지역")
             plt.ylabel("수")
             plt.title("에어컨이 있는 쉼터")
-
+            plt.xticks(fontname='NanumBarunGothicLight')
+            plt.yticks(fontname='NanumBarunGothicLight')
+            plt.show()
             st.pyplot(fig)
 
     else:
