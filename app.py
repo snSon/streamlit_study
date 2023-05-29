@@ -5,7 +5,7 @@ import streamlit as st
 import matplotlib.pyplot as plt
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
-plt.rcParams["font.family"] = "Malgun Gothic"
+plt.rcParams["font.family"] = "NanumBarunGothic"
 
 encodingKey = "ZiLUX%2Bgd1UZWVK6xgqsuh3r7VVxBd33bdidKHPB9pJ2MuoEVMGjgAGms0G4g6PGmLFyVqGhUNP6wivLVImW9hA%3D%3D"
 url = "http://apis.data.go.kr/1741000/HeatWaveShelter2/getHeatWaveShelterList2?"
@@ -81,21 +81,21 @@ try:
         # Create buttons
         if st.button("지역별 무더위 쉼터 갯수"):
             # Display chart for shelter counts
-            fig, ax = plt.subplots(figsize=(10, 6))
+            fig, ax = plt.subplots(figsize=(6, 6))
             plt.bar(shelter_counts.keys(), shelter_counts.values())
             plt.xlabel("지역명")
             plt.ylabel("갯수")
             plt.title("지역별 무더위 쉼터")
-            st.pyplot(fig)
+            st.pyplot(plt)
 
         if st.button("지역별 에어컨이 갖춰진 쉼터 갯수"):
             # Display chart for good shelters
-            fig, ax = plt.subplots(figsize=(10, 6))
+            fig, ax = plt.subplots(figsize=(6, 6))
             plt.bar(shelter_counts.keys(), shelter_counts.values())
             plt.xlabel("지역명")
             plt.ylabel("갯수")
             plt.title("지역별 무더위 쉼터")
-            st.pyplot(fig)
+            st.pyplot(plt)
 
     else:
         st.error("API 요청 실패: " + str(response.status_code))
