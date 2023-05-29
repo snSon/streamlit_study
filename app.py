@@ -3,7 +3,7 @@ import json
 import pandas as pd
 import streamlit as st
 import matplotlib.pyplot as plt
-plt.rcParams['font.family'] = 'NanumGothic'
+plt.rcParams['font.family'] = 'UnBatang'
 
 encodingKey = "ZiLUX%2Bgd1UZWVK6xgqsuh3r7VVxBd33bdidKHPB9pJ2MuoEVMGjgAGms0G4g6PGmLFyVqGhUNP6wivLVImW9hA%3D%3D"
 url = "http://apis.data.go.kr/1741000/HeatWaveShelter2/getHeatWaveShelterList2?"
@@ -65,7 +65,7 @@ try:
         # Create buttons
         if st.button("지역별 무더위 쉼터 갯수"):
             # Display chart for shelter counts
-            fig, ax = plt.subplots(figsize=(6, 4))
+            fig, ax = plt.subplots(figsize=(8, 6))
             plt.bar(shelter_counts.keys(), shelter_counts.values())
             plt.xlabel("지역")
             plt.ylabel("수")
@@ -74,7 +74,7 @@ try:
 
         if st.button("지역별 에어컨 있는 쉼터 갯수"):
             # Display chart for good shelters
-            fig, ax = plt.subplots(figsize=(6, 4))
+            fig, ax = plt.subplots(figsize=(8, 6))
             plt.bar(shelter_counts.keys(), shelter_counts.values())
             plt.xlabel("지역")
             plt.ylabel("수")
