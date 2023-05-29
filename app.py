@@ -10,6 +10,8 @@ font_prop = fm.FontProperties(fname=font_path, size= 16)
 
 plt.rcParams['font.family'] = font_prop.get_name()
 
+mat.rcParams['font.family'] = 'NanumBarunGothicLight.ttf'
+
 encodingKey = "ZiLUX%2Bgd1UZWVK6xgqsuh3r7VVxBd33bdidKHPB9pJ2MuoEVMGjgAGms0G4g6PGmLFyVqGhUNP6wivLVImW9hA%3D%3D"
 url = "http://apis.data.go.kr/1741000/HeatWaveShelter2/getHeatWaveShelterList2?"
 params = {'ServiceKey': encodingKey, 'year': '2023', 'type' : 'json'}
@@ -74,18 +76,6 @@ try:
             plt.ylabel("수", fontproperties=font_prop)
             plt.title("쉼터", fontproperties=font_prop)
 
-            # x축 레이블 폰트 설정 및 회전
-            ax.tick_params(axis='x', rotation=45, labelsize=12, labelcolor='black', width=1, pad=1,
-                           labelfontproperties=font_prop)
-
-            # y축 레이블 폰트 설정
-            ax.tick_params(axis='y', labelsize=12, labelcolor='black', width=1, pad=1, labelfontproperties=font_prop)
-
-            # 각 막대의 레이블 폰트 설정
-            for bar in bars:
-                ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height(), str(bar.get_height()), ha='center',
-                        va='bottom', fontproperties=font_prop)
-
             st.pyplot(fig)
 
         if st.button("지역별 에어컨 있는 쉼터 갯수"):
@@ -95,18 +85,6 @@ try:
             plt.xlabel("지역", fontproperties=font_prop)
             plt.ylabel("수", fontproperties=font_prop)
             plt.title("쉼터", fontproperties=font_prop)
-
-            # x축 레이블 폰트 설정 및 회전
-            ax.tick_params(axis='x', rotation=45, labelsize=12, labelcolor='black', width=1, pad=1,
-                           labelfontproperties=font_prop)
-
-            # y축 레이블 폰트 설정
-            ax.tick_params(axis='y', labelsize=12, labelcolor='black', width=1, pad=1, labelfontproperties=font_prop)
-
-            # 각 막대의 레이블 폰트 설정
-            for bar in bars:
-                ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height(), str(bar.get_height()), ha='center',
-                        va='bottom', fontproperties=font_prop)
 
             st.pyplot(fig)
 
