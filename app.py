@@ -5,7 +5,7 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
 
-font_path = fm.findfont(fm.FontProperties(family="NanumBarunGothicLight"))
+font_path = fm.findfont(fm.FontProperties(family="Arial"))
 plt.rcParams["font.family"] = font_path
 
 
