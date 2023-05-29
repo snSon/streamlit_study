@@ -66,18 +66,18 @@ try:
             # Display chart for shelter counts
             fig, ax = plt.subplots(figsize=(8, 6))
             plt.bar(shelter_counts.keys(), shelter_counts.values())
-            plt.xlabel("지역명")
-            plt.ylabel("갯수")
-            plt.title("지역별 무더위 쉼터")
+            plt.xlabel("지역")
+            plt.ylabel("수")
+            plt.title("쉼터")
             st.pyplot(plt)
 
-        if st.button("지역별 에어컨이 갖춰진 쉼터 갯수"):
+        if st.button("지역별 에어컨 있는 쉼터 갯수"):
             # Display chart for good shelters
             fig, ax = plt.subplots(figsize=(8, 6))
             plt.bar(shelter_counts.keys(), shelter_counts.values())
-            plt.xlabel("지역명")
-            plt.ylabel("갯수")
-            plt.title("지역별 무더위 쉼터")
+            plt.xlabel("지역")
+            plt.ylabel("수")
+            plt.title("에어컨 쉼터")
             st.pyplot(plt)
 
     else:
