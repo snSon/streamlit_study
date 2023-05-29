@@ -7,7 +7,7 @@ import matplotlib.font_manager as fm
 
 encodingKey = "ZiLUX%2Bgd1UZWVK6xgqsuh3r7VVxBd33bdidKHPB9pJ2MuoEVMGjgAGms0G4g6PGmLFyVqGhUNP6wivLVImW9hA%3D%3D"
 url = "http://apis.data.go.kr/1741000/HeatWaveShelter2/getHeatWaveShelterList2?"
-params = {'ServiceKey': encodingKey, 'year': '2023'}
+params = {'ServiceKey': encodingKey, 'year': '2023', 'type' : 'xml'}
 
 response = requests.get(url, params=params)
 
@@ -16,7 +16,7 @@ if response.status_code == 200:
     content = response.text
 
     # XML 데이터를 파싱합니다
-    soup = BeautifulSoup(content, 'html.parser')
+    soup = BeautifulSoup(content, 'xml')
 
     rows = soup.find_all('row')
 
