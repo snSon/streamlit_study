@@ -3,7 +3,8 @@ import json
 import pandas as pd
 import streamlit as st
 import matplotlib.pyplot as plt
-plt.rcParams['font.family'] = 'UnBatang'
+
+plt.rcParams['font.family'] = 'Malgun Gothic'  # 또는 다른 폰트 이름
 
 encodingKey = "ZiLUX%2Bgd1UZWVK6xgqsuh3r7VVxBd33bdidKHPB9pJ2MuoEVMGjgAGms0G4g6PGmLFyVqGhUNP6wivLVImW9hA%3D%3D"
 url = "http://apis.data.go.kr/1741000/HeatWaveShelter2/getHeatWaveShelterList2?"
@@ -18,7 +19,6 @@ try:
         data = response.json()
 
         shelters = data['HeatWaveShelter'][1]['row']
-
 
         shelter_counts = {
             "경기": 0,
