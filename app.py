@@ -11,12 +11,11 @@ params = {'ServiceKey': encodingKey, 'year': '2023'}
 
 response = requests.get(url, params=params)
 
-# API 요청이 성공한 경우에만 처리합니다
+# API 요청이 성공
 if response.status_code == 200:
     content = response.text
 
-    # XML 데이터를 파싱합니다
-    soup = BeautifulSoup(content, 'xml')
+    soup = BeautifulSoup(content, 'html.parser')
 
     rows = soup.find_all('row')
 
@@ -58,7 +57,6 @@ if response.status_code == 200:
         "제주": 0
     }
 
-    # 광역시, 도별 쉼터 개수 계산 및 조건에 맞는 쉼터 저장
     for row in rows:
         area_nm = row.find('areaNm').text
         ar = int(row.find('ar').text)
