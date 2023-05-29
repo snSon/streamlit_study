@@ -5,10 +5,6 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
 
-font_path = fm.findfont(fm.FontProperties(family="Arial"))
-plt.rcParams["font.family"] = font_path
-
-
 encodingKey = "ZiLUX%2Bgd1UZWVK6xgqsuh3r7VVxBd33bdidKHPB9pJ2MuoEVMGjgAGms0G4g6PGmLFyVqGhUNP6wivLVImW9hA%3D%3D"
 url = "http://apis.data.go.kr/1741000/HeatWaveShelter2/getHeatWaveShelterList2?"
 params = {'ServiceKey': encodingKey, 'year': '2023', 'type': 'json'}
@@ -63,6 +59,10 @@ try:
 
         # Streamlit app
         st.title("지역별 무더위 쉼터 차트")
+
+        # Set font
+        font_path = 'NanumBarunGothicLight.ttf'
+        st.markdown(f'<style>body{{font-family: "NanumBarunGothicLight", sans-serif;}}</style>', unsafe_allow_html=True)
 
         # Create buttons
         if st.button("지역별 무더위 쉼터 갯수"):
