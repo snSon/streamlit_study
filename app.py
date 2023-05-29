@@ -69,19 +69,45 @@ try:
         if st.button("지역별 무더위 쉼터 갯수"):
             # Display chart for shelter counts
             fig, ax = plt.subplots(figsize=(8, 6))
-            plt.bar(shelter_counts.keys(), shelter_counts.values())
+            bars = plt.bar(shelter_counts.keys(), shelter_counts.values())
             plt.xlabel("지역", fontproperties=font_prop)
             plt.ylabel("수", fontproperties=font_prop)
             plt.title("쉼터", fontproperties=font_prop)
+
+            # x축 레이블 폰트 설정
+            ax.tick_params(axis='x', labelrotation=45, labelsize=12, labelcolor='black', width=1, pad=1,
+                           labelfontproperties=font_prop)
+
+            # y축 레이블 폰트 설정
+            ax.tick_params(axis='y', labelsize=12, labelcolor='black', width=1, pad=1, labelfontproperties=font_prop)
+
+            # 각 막대의 레이블 폰트 설정
+            for bar in bars:
+                ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height(), str(bar.get_height()), ha='center',
+                        va='bottom', fontproperties=font_prop)
+
             st.pyplot(fig)
 
         if st.button("지역별 에어컨 있는 쉼터 갯수"):
             # Display chart for good shelters
             fig, ax = plt.subplots(figsize=(8, 6))
-            plt.bar(shelter_good.keys(), shelter_good.values())
+            bars = plt.bar(shelter_counts.keys(), shelter_counts.values())
             plt.xlabel("지역", fontproperties=font_prop)
             plt.ylabel("수", fontproperties=font_prop)
-            plt.title("에어컨 쉼터", fontproperties=font_prop)
+            plt.title("쉼터", fontproperties=font_prop)
+
+            # x축 레이블 폰트 설정
+            ax.tick_params(axis='x', labelrotation=45, labelsize=12, labelcolor='black', width=1, pad=1,
+                           labelfontproperties=font_prop)
+
+            # y축 레이블 폰트 설정
+            ax.tick_params(axis='y', labelsize=12, labelcolor='black', width=1, pad=1, labelfontproperties=font_prop)
+
+            # 각 막대의 레이블 폰트 설정
+            for bar in bars:
+                ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height(), str(bar.get_height()), ha='center',
+                        va='bottom', fontproperties=font_prop)
+
             st.pyplot(fig)
 
     else:
