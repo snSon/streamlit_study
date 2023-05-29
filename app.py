@@ -11,10 +11,11 @@ params = {'ServiceKey': encodingKey, 'year': '2023'}
 
 response = requests.get(url, params=params)
 
-# API 요청이 성공
+# API 요청이 성공한 경우에만 처리합니다
 if response.status_code == 200:
     content = response.text
 
+    # XML 데이터를 파싱합니다
     soup = BeautifulSoup(content, 'html.parser')
 
     rows = soup.find_all('row')
@@ -58,18 +59,20 @@ if response.status_code == 200:
     }
 
     for row in rows:
-        area_nm = row.find('areaNm').text
-        ar = int(row.find('ar').text)
-        colr_hold_arcndtn = int(row.find('colrHoldArcndtn').text)
+        area_nm_tag = row.find('areaNm')
+        if area_nm_tag is not None:
+            area_nm = area_nm_tag.text
+            ar = int(row.find('ar').text)
+            colr_hold_arcndtn = int(row.find('colrHoldArcndtn').text)
 
-        for area in shelter_counts.keys():
-            if area in area_nm:
-                if colr_hold_arcndtn == 0:
+            for area in shelter_counts.keys():
+                if area in area_nm:
+                    if colr_hold_arcndtn == 0:
+                        break
+                    if ar / colr_hold_arcndtn >= 50:
+                        shelter_good[area] += 1
+                    shelter_counts[area] += 1
                     break
-                if ar / colr_hold_arcndtn >= 50:
-                    shelter_good[area] += 1
-                shelter_counts[area] += 1
-                break
 
     # Streamlit app
     st.title("지역별 무더위 쉼터 차트")
