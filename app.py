@@ -3,7 +3,9 @@ import json
 import pandas as pd
 import streamlit as st
 import matplotlib.pyplot as plt
-import pydeck as pdk
+
+st.set_option('deprecation.showPyplotGlobalUse', False)
+plt.rcParams["font.family"] = "Arial Unicode MS"
 
 encodingKey = "ZiLUX%2Bgd1UZWVK6xgqsuh3r7VVxBd33bdidKHPB9pJ2MuoEVMGjgAGms0G4g6PGmLFyVqGhUNP6wivLVImW9hA%3D%3D"
 url = "http://apis.data.go.kr/1741000/HeatWaveShelter2/getHeatWaveShelterList2?"
@@ -84,16 +86,22 @@ try:
             plt.xlabel("지역명")
             plt.ylabel("갯수")
             plt.title("지역별 무더위 쉼터")
-            st.pyplot(fig)
+            plt.savefig("chart.png")
+
+            # 이미지 출력
+            st.image("chart.png")
 
         if st.button("지역별 에어컨이 갖춰진 쉼터 갯수"):
             # Display chart for good shelters
             fig, ax = plt.subplots(figsize=(10, 6))
-            plt.bar(shelter_good.keys(), shelter_good.values())
+            plt.bar(shelter_counts.keys(), shelter_counts.values())
             plt.xlabel("지역명")
             plt.ylabel("갯수")
-            plt.title("지역별 에어컨이 갖춰진 쉼터")
-            st.pyplot(fig)
+            plt.title("지역별 무더위 쉼터")
+            plt.savefig("chart.png")
+
+            # 이미지 출력
+            st.image("chart.png")
 
     else:
         st.error("API 요청 실패: " + str(response.status_code))
