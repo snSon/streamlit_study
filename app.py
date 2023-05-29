@@ -14,7 +14,7 @@ encodingKey = "ZiLUX%2Bgd1UZWVK6xgqsuh3r7VVxBd33bdidKHPB9pJ2MuoEVMGjgAGms0G4g6PG
 url = "http://apis.data.go.kr/1741000/HeatWaveShelter2/getHeatWaveShelterList2?"
 params = {'ServiceKey': encodingKey, 'year': '2023', 'type': 'json'}
 
-# API 요청이 성공한 경우에만 처리합니다
+# API 요청이 성공
 try:
     response = requests.get(url, params=params)
 
@@ -91,5 +91,6 @@ try:
     else:
         st.error("API 요청 실패: " + str(response.status_code))
 
+#API 요청이 실패
 except requests.RequestException as e:
     st.error("API 요청 실패: " + str(e))
