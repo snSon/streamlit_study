@@ -87,6 +87,7 @@ try:
             plt.ylabel("갯수")
             plt.title("지역별 무더위 쉼터")
             plt.savefig("chart.png")
+            st.pyplot(plt)
 
             # 이미지 출력
             st.image("chart.png")
@@ -99,6 +100,7 @@ try:
             plt.ylabel("갯수")
             plt.title("지역별 무더위 쉼터")
             plt.savefig("chart.png")
+            st.pyplot(plt)
 
             # 이미지 출력
             st.image("chart.png")
