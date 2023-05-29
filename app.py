@@ -8,9 +8,6 @@ import matplotlib.font_manager as fm
 font_path = 'NanumBarunGothicLight.ttf'
 font_prop = fm.FontProperties(fname=font_path, size= 16)
 
-# 폰트 설정
-rc('font', family='NanumBarunGothic')
-
 encodingKey = "ZiLUX%2Bgd1UZWVK6xgqsuh3r7VVxBd33bdidKHPB9pJ2MuoEVMGjgAGms0G4g6PGmLFyVqGhUNP6wivLVImW9hA%3D%3D"
 url = "http://apis.data.go.kr/1741000/HeatWaveShelter2/getHeatWaveShelterList2?"
 params = {'ServiceKey': encodingKey, 'year': '2023', 'type' : 'json'}
