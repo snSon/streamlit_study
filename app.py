@@ -4,9 +4,6 @@ import pandas as pd
 import streamlit as st
 import matplotlib.pyplot as plt
 
-st.set_option('deprecation.showPyplotGlobalUse', False)
-plt.rcParams["font.family"] = "NanumBarunGothic"
-
 encodingKey = "ZiLUX%2Bgd1UZWVK6xgqsuh3r7VVxBd33bdidKHPB9pJ2MuoEVMGjgAGms0G4g6PGmLFyVqGhUNP6wivLVImW9hA%3D%3D"
 url = "http://apis.data.go.kr/1741000/HeatWaveShelter2/getHeatWaveShelterList2?"
 params = {'ServiceKey': encodingKey, 'year': '2023', 'type' : 'json'}
@@ -25,39 +22,25 @@ try:
         shelter_counts = {
             "경기": 0,
             "서울": 0,
-            "인천": 0,
-            "강원": 0,
             "충청남": 0,
             "충청북": 0,
-            "대전": 0,
             "경상북": 0,
             "경상남": 0,
             "전라북": 0,
             "전라남": 0,
-            "대구": 0,
-            "울산": 0,
-            "부산": 0,
             "광주": 0,
-            "제주": 0
         }
 
         shelter_good = {
             "경기": 0,
             "서울": 0,
-            "인천": 0,
-            "강원": 0,
             "충청남": 0,
             "충청북": 0,
-            "대전": 0,
             "경상북": 0,
             "경상남": 0,
             "전라북": 0,
             "전라남": 0,
-            "대구": 0,
-            "울산": 0,
-            "부산": 0,
             "광주": 0,
-            "제주": 0
         }
 
         # 광역시, 도별 쉼터 개수 계산 및 조건에 맞는 쉼터 저장
@@ -81,7 +64,7 @@ try:
         # Create buttons
         if st.button("지역별 무더위 쉼터 갯수"):
             # Display chart for shelter counts
-            fig, ax = plt.subplots(figsize=(6, 6))
+            fig, ax = plt.subplots(figsize=(8, 6))
             plt.bar(shelter_counts.keys(), shelter_counts.values())
             plt.xlabel("지역명")
             plt.ylabel("갯수")
@@ -90,7 +73,7 @@ try:
 
         if st.button("지역별 에어컨이 갖춰진 쉼터 갯수"):
             # Display chart for good shelters
-            fig, ax = plt.subplots(figsize=(6, 6))
+            fig, ax = plt.subplots(figsize=(8, 6))
             plt.bar(shelter_counts.keys(), shelter_counts.values())
             plt.xlabel("지역명")
             plt.ylabel("갯수")
