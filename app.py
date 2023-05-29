@@ -86,7 +86,7 @@ try:
             plt.xlabel("지역명")
             plt.ylabel("갯수")
             plt.title("지역별 무더위 쉼터")
-            st.pyplot(plt)
+            st.pyplot(fig)
 
         if st.button("지역별 에어컨이 갖춰진 쉼터 갯수"):
             # Display chart for good shelters
@@ -95,7 +95,7 @@ try:
             plt.xlabel("지역명")
             plt.ylabel("갯수")
             plt.title("지역별 무더위 쉼터")
-            st.pyplot(plt)
+            st.pyplot(fig)
 
     else:
         st.error("API 요청 실패: " + str(response.status_code))
