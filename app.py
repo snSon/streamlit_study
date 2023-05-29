@@ -2,7 +2,6 @@ import requests
 import json
 import pandas as pd
 import streamlit as st
-import matplotlib
 import matplotlib.pyplot as plt
 plt.rcParams['font.family'] = 'Malgun Gothic'
 
