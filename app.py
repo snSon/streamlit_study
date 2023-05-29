@@ -1,48 +1,101 @@
-import streamlit as st
 import requests
-import json
+from bs4 import BeautifulSoup
+import pandas as pd
+import streamlit as st
+import matplotlib.pyplot as plt
+import matplotlib.font_manager as fm
 
-GPT_API_ENDPOINT = "https://api.openai.com/v1/engines/davinci-codex/completions"
-API_KEY = ""
+encodingKey = "ZiLUX%2Bgd1UZWVK6xgqsuh3r7VVxBd33bdidKHPB9pJ2MuoEVMGjgAGms0G4g6PGmLFyVqGhUNP6wivLVImW9hA%3D%3D"
+url = "http://apis.data.go.kr/1741000/HeatWaveShelter2/getHeatWaveShelterList2?"
+params = {'ServiceKey': encodingKey, 'year': '2023'}
 
-# GPT API로부터 답변을 받는 함수
-def get_gpt_answer(question, solution):
-    headers = {
-        "Authorization": f"Bearer {API_KEY}",
-        "Content-Type": "application/json"
+response = requests.get(url, params=params)
+
+# API 요청이 성공한 경우에만 처리합니다
+if response.status_code == 200:
+    content = response.text
+
+    # XML 데이터를 파싱합니다
+    soup = BeautifulSoup(content, 'xml')
+
+    rows = soup.find_all('row')
+
+    shelter_counts = {
+        "경기": 0,
+        "서울": 0,
+        "인천": 0,
+        "강원": 0,
+        "충청남": 0,
+        "충청북": 0,
+        "대전": 0,
+        "경상북": 0,
+        "경상남": 0,
+        "전라북": 0,
+        "전라남": 0,
+        "대구": 0,
+        "울산": 0,
+        "부산": 0,
+        "광주": 0,
+        "제주": 0
     }
 
-    data = {
-        "prompt": f"1. 문제: {question}\n2. 문제 풀이: {solution}\n3.",
-        "max_tokens": 100,
-        "temperature": 0.7
+    shelter_good = {
+        "경기": 0,
+        "서울": 0,
+        "인천": 0,
+        "강원": 0,
+        "충청남": 0,
+        "충청북": 0,
+        "대전": 0,
+        "경상북": 0,
+        "경상남": 0,
+        "전라북": 0,
+        "전라남": 0,
+        "대구": 0,
+        "울산": 0,
+        "부산": 0,
+        "광주": 0,
+        "제주": 0
     }
 
-    response = requests.post(GPT_API_ENDPOINT, headers=headers, json=data)
-    answer = response.json()["choices"][0]["text"].strip()
+    # 광역시, 도별 쉼터 개수 계산 및 조건에 맞는 쉼터 저장
+    for row in rows:
+        area_nm = row.find('areaNm').text
+        ar = int(row.find('ar').text)
+        colr_hold_arcndtn = int(row.find('colrHoldArcndtn').text)
 
-    return answer
+        for area in shelter_counts.keys():
+            if area in area_nm:
+                if colr_hold_arcndtn == 0:
+                    break
+                if ar / colr_hold_arcndtn >= 50:
+                    shelter_good[area] += 1
+                shelter_counts[area] += 1
+                break
 
-# Streamlit 앱 메인 부분
-def main():
-    st.title("고등학교 수학 문제 풀이 검증")
+    # Streamlit app
+    st.title("지역별 무더위 쉼터 차트")
 
-    # 문제 입력
-    st.header("문제 입력")
-    question = st.text_area("문제를 입력하세요", height=100)
+    plt.rcParams['font.family'] = 'Malgun Gothic'
 
-    # 문제 풀이 입력
-    st.header("문제 풀이 입력")
-    solution = st.text_area("문제 풀이를 입력하세요", height=300)
+    # Create buttons
+    if st.button("지역별 무더위 쉼터 갯수"):
+        # Display chart for shelter counts
+        fig, ax = plt.subplots(figsize=(10, 6))
+        plt.bar(shelter_counts.keys(), shelter_counts.values())
+        plt.xlabel("지역명")
+        plt.ylabel("갯수")
+        plt.title("지역별 무더위 쉼터")
+        st.pyplot(plt)
 
-    # 정답 확인
-    if st.button("풀이 확인"):
-        # GPT 모델로 검증된 데이터 가져오기
-        verified_data = get_gpt_answer(question, solution)
+    if st.button("지역별 에어컨이 갖춰진 쉼터 갯수"):
+        # Display chart for good shelters
+        fig, ax = plt.subplots(figsize=(10, 6))
+        plt.bar(shelter_good.keys(), shelter_good.values())
+        plt.xlabel("지역명")
+        plt.ylabel("갯수")
+        plt.title("지역별 에어컨이 갖춰진 쉼터")
+        st.pyplot(plt)
 
-        # 검증된 데이터 출력
-        st.subheader("검증된 데이터")
-        st.write(verified_data)
-
-if __name__ == "__main__":
-    main()
+else:
+    st.error("API 요청 실패: " + str(response.status_code))
