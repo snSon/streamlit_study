@@ -5,10 +5,9 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
 
-font_path = 'NanumBarunGothicLight.ttf'
-font_prop = fm.FontProperties(fname=font_path, size=16)
+font_path = fm.findfont(fm.FontProperties(family="NanumBarunGothicLight"))
+plt.rcParams["font.family"] = font_path
 
-plt.rcParams['font.family'] = font_prop.get_name()
 
 encodingKey = "ZiLUX%2Bgd1UZWVK6xgqsuh3r7VVxBd33bdidKHPB9pJ2MuoEVMGjgAGms0G4g6PGmLFyVqGhUNP6wivLVImW9hA%3D%3D"
 url = "http://apis.data.go.kr/1741000/HeatWaveShelter2/getHeatWaveShelterList2?"
@@ -70,9 +69,9 @@ try:
             # Display chart for shelter counts
             fig, ax = plt.subplots(figsize=(8, 6))
             plt.bar(shelter_counts.keys(), shelter_counts.values())
-            plt.xlabel("지역", fontproperties=font_prop)
-            plt.ylabel("수", fontproperties=font_prop)
-            plt.title("쉼터", fontproperties=font_prop)
+            plt.xlabel("지역")
+            plt.ylabel("수")
+            plt.title("쉼터")
 
             st.pyplot(fig)
 
@@ -80,9 +79,9 @@ try:
             # Display chart for good shelters
             fig, ax = plt.subplots(figsize=(8, 6))
             plt.bar(shelter_good.keys(), shelter_good.values())
-            plt.xlabel("지역", fontproperties=font_prop)
-            plt.ylabel("수", fontproperties=font_prop)
-            plt.title("에어컨이 있는 쉼터", fontproperties=font_prop)
+            plt.xlabel("지역")
+            plt.ylabel("수")
+            plt.title("에어컨이 있는 쉼터")
 
             st.pyplot(fig)
 
