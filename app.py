@@ -6,15 +6,13 @@ import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
 
 font_path = 'NanumBarunGothicLight.ttf'
-font_prop = fm.FontProperties(fname=font_path, size= 16)
+font_prop = fm.FontProperties(fname=font_path, size=16)
 
 plt.rcParams['font.family'] = font_prop.get_name()
 
-mat.rcParams['font.family'] = 'NanumBarunGothicLight.ttf'
-
 encodingKey = "ZiLUX%2Bgd1UZWVK6xgqsuh3r7VVxBd33bdidKHPB9pJ2MuoEVMGjgAGms0G4g6PGmLFyVqGhUNP6wivLVImW9hA%3D%3D"
 url = "http://apis.data.go.kr/1741000/HeatWaveShelter2/getHeatWaveShelterList2?"
-params = {'ServiceKey': encodingKey, 'year': '2023', 'type' : 'json'}
+params = {'ServiceKey': encodingKey, 'year': '2023', 'type': 'json'}
 
 # API 요청이 성공한 경우에만 처리합니다
 try:
@@ -81,13 +79,12 @@ try:
         if st.button("지역별 에어컨 있는 쉼터 갯수"):
             # Display chart for good shelters
             fig, ax = plt.subplots(figsize=(8, 6))
-            bars = plt.bar(shelter_counts.keys(), shelter_counts.values())
+            bars = plt.bar(shelter_good.keys(), shelter_good.values())
             plt.xlabel("지역", fontproperties=font_prop)
             plt.ylabel("수", fontproperties=font_prop)
-            plt.title("쉼터", fontproperties=font_prop)
+            plt.title("에어컨이 있는 쉼터", fontproperties=font_prop)
 
             st.pyplot(fig)
-
 
     else:
         st.error("API 요청 실패: " + str(response.status_code))
